@@ -9,6 +9,6 @@ class FDataBase:
             self.__cur.execute(sql)
             res = self.__cur.fetchall()
             if res: return res
-        except:
-            print("Error read db")
+        except Exception as err:
+            print(f"Error read db {err}")
         return []

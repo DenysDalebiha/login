@@ -3,6 +3,11 @@
 {% block content%}
 {{ super() }}
 <div class = app-title>
+    {% if title %}
+<h1> {{ title }} :D</h1>
+    {% else %}
+<h1>Home</h1>
+    {% endif %}
     <p> sweet home<p>
 </div>
 {% endblock %}

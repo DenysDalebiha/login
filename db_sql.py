@@ -14,7 +14,7 @@ app.config.update(dict(DATABASE=os.path.join(app.root_path, 'flsite.db')))
 
 
 def connect_db():
-    conn = sqlite3.connect(app.config['DATABASE'])
+    conn = sqlite3.connect(app.config['DATABASE'], check_same_thread=False)
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -27,6 +27,10 @@ def create_db():
     db.close()
 
 
+with connect_db() as db:
+    dbase = FDataBase(db)
+
+
 def get_db():
     if not hasattr(g, 'link_db'):
         g.link_db = connect_db()
@@ -35,10 +39,10 @@ def get_db():
 
 @app.route("/")
 def index():
-    db = get_db()
-    dbase = FDataBase(db)
     return render_template("index.html", menu=dbase.getMenu())
-
+@app.route("/login")
+def login():
+    return render_template("/login.html", menu=dbase.getMenu())
 
 @app.teardown_appcontext
 def close_db(error):
