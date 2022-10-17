@@ -1,7 +1,7 @@
 import sqlite3
 import os
 from flask import Flask, flash, render_template, request, g
-from fdatabase import FDataBase
+import fdatabase as fdb
 
 DATABASE = 'tmp/flsite.db'
 DEBUG = True
@@ -28,7 +28,7 @@ def create_db():
 
 
 with connect_db() as db:
-    dbase = FDataBase(db)
+    dbase = fdb.FDataBase(db)
 
 
 def get_db():
@@ -46,7 +46,9 @@ def index():
 def login():
     if request.method == "POST":
         print(request.form.get('username'))
+        fdb.Users
         flash("Successful")
+
     return render_template("/login.html", menu=dbase.getMenu())
 
 @app.teardown_appcontext
