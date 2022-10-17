@@ -92,3 +92,15 @@ ul.mainmenu li{
     float: left;
     margin: 18px 40px 0 50px;
 }
+
+.flash{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background: cyan;
+    font-size: 80px;
+    width: 400px ;
+    border-radius: 40px;
+}
